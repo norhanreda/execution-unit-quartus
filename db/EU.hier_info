@@ -1,0 +1,524 @@
+|Eu
+cout <= A:alu1.cout
+destination[0] => dc:inst.A
+destination[0] => muxbus:inst3.S[0]
+destination[1] => dc:inst.B
+destination[1] => muxbus:inst3.S[1]
+clk => register:inst11.clk
+clk => register:inst9.clk
+clk => register:inst10.clk
+D[0] => muxbus:inst2.D[0]
+D[0] => muxbus:inst3.D[0]
+D[1] => muxbus:inst2.D[1]
+D[1] => muxbus:inst3.D[1]
+D[2] => muxbus:inst2.D[2]
+D[2] => muxbus:inst3.D[2]
+D[3] => muxbus:inst2.D[3]
+D[3] => muxbus:inst3.D[3]
+source[0] => muxbus:inst2.S[0]
+source[1] => muxbus:inst2.S[1]
+operation[0] => A:alu1.S[0]
+operation[1] => A:alu1.S[1]
+A[0] <= register:inst11.Q[0]
+A[1] <= register:inst11.Q[1]
+A[2] <= register:inst11.Q[2]
+A[3] <= register:inst11.Q[3]
+B[0] <= register:inst9.Q[0]
+B[1] <= register:inst9.Q[1]
+B[2] <= register:inst9.Q[2]
+B[3] <= register:inst9.Q[3]
+C[0] <= register:inst10.Q[0]
+C[1] <= register:inst10.Q[1]
+C[2] <= register:inst10.Q[2]
+C[3] <= register:inst10.Q[3]
+Y3 <= A:alu1.Y[3]
+Y2 <= A:alu1.Y[2]
+Y1 <= A:alu1.Y[1]
+Y0 <= A:alu1.Y[0]
+
+
+|Eu|A:alu1
+cout <= ALU:inst.Cout
+A[0] => ALU:inst.A0
+A[1] => ALU:inst.A1
+A[2] => ALU:inst.A2
+A[3] => ALU:inst.A3
+B[0] => ALU:inst.B0
+B[1] => ALU:inst.B1
+B[2] => ALU:inst.B2
+B[3] => ALU:inst.B3
+S[0] => ALU:inst.S0
+S[1] => ALU:inst.S1
+Y[0] <= ALU:inst.Y0
+Y[1] <= ALU:inst.Y1
+Y[2] <= ALU:inst.Y2
+Y[3] <= ALU:inst.Y3
+
+
+|Eu|A:alu1|ALU:inst
+Y3 <= mux4:inst9m.Y
+A3 => mux4:inst9m.I0
+A3 => CA:inst.A3
+A3 => inst6.IN0
+B3 => mux4:inst9m.I1
+B3 => CA:inst.B3
+B3 => inst6.IN1
+A1 => CA:inst.A1
+A1 => mux4:inst12.I0
+A1 => inst8.IN0
+B1 => CA:inst.B1
+B1 => mux4:inst12.I1
+B1 => inst8.IN1
+B2 => CA:inst.B2
+B2 => mux4:inst11.I1
+B2 => inst8a.IN1
+A2 => CA:inst.A2
+A2 => mux4:inst11.I0
+A2 => inst8a.IN0
+A0 => CA:inst.A0
+A0 => mux4:inst13.I0
+A0 => inst9.IN0
+B0 => CA:inst.B0
+B0 => mux4:inst13.I1
+B0 => inst9.IN1
+S1 => mux4:inst9m.S1
+S1 => mux4:inst11.S1
+S1 => mux4:inst12.S1
+S1 => mux4:inst13.S1
+S1 => mux4:inst14.S1
+S0 => mux4:inst9m.S0
+S0 => mux4:inst11.S0
+S0 => mux4:inst12.S0
+S0 => mux4:inst13.S0
+S0 => mux4:inst14.S0
+Y2 <= mux4:inst11.Y
+Y1 <= mux4:inst12.Y
+Y0 <= mux4:inst13.Y
+Cout <= mux4:inst14.Y
+
+
+|Eu|A:alu1|ALU:inst|mux4:inst9m
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
+|Eu|A:alu1|ALU:inst|CA:inst
+COUT <= FA:inst.Cout
+A3 => FA:inst.a
+B3 => FA:inst.b
+A2 => FA:inst1.a
+B2 => FA:inst1.b
+A1 => FA:inst2.a
+B1 => FA:inst2.b
+A0 => FA:inst3.a
+B0 => FA:inst3.b
+S0 <= FA:inst3.SUM
+S1 <= FA:inst2.SUM
+S2 <= FA:inst1.SUM
+S3 <= FA:inst.SUM
+
+
+|Eu|A:alu1|ALU:inst|CA:inst|FA:inst
+Cout <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+a => inst1.IN0
+a => inst.IN0
+a => inst4.IN0
+Cin => inst1.IN1
+Cin => inst2.IN1
+Cin => inst5.IN1
+b => inst2.IN0
+b => inst.IN1
+b => inst4.IN1
+SUM <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Eu|A:alu1|ALU:inst|CA:inst|FA:inst1
+Cout <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+a => inst1.IN0
+a => inst.IN0
+a => inst4.IN0
+Cin => inst1.IN1
+Cin => inst2.IN1
+Cin => inst5.IN1
+b => inst2.IN0
+b => inst.IN1
+b => inst4.IN1
+SUM <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Eu|A:alu1|ALU:inst|CA:inst|FA:inst2
+Cout <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+a => inst1.IN0
+a => inst.IN0
+a => inst4.IN0
+Cin => inst1.IN1
+Cin => inst2.IN1
+Cin => inst5.IN1
+b => inst2.IN0
+b => inst.IN1
+b => inst4.IN1
+SUM <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Eu|A:alu1|ALU:inst|CA:inst|FA:inst3
+Cout <= inst3.DB_MAX_OUTPUT_PORT_TYPE
+a => inst1.IN0
+a => inst.IN0
+a => inst4.IN0
+Cin => inst1.IN1
+Cin => inst2.IN1
+Cin => inst5.IN1
+b => inst2.IN0
+b => inst.IN1
+b => inst4.IN1
+SUM <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Eu|A:alu1|ALU:inst|mux4:inst11
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
+|Eu|A:alu1|ALU:inst|mux4:inst12
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
+|Eu|A:alu1|ALU:inst|mux4:inst13
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
+|Eu|A:alu1|ALU:inst|mux4:inst14
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
+|Eu|muxbus:inst2
+Y[0] <= mux4:inst3.Y
+Y[1] <= mux4:inst2.Y
+Y[2] <= mux4:inst1.Y
+Y[3] <= mux4:inst.Y
+A[0] => mux4:inst3.I0
+A[1] => mux4:inst2.I0
+A[2] => mux4:inst1.I0
+A[3] => mux4:inst.I0
+B[0] => mux4:inst3.I1
+B[1] => mux4:inst2.I1
+B[2] => mux4:inst1.I1
+B[3] => mux4:inst.I1
+C[0] => mux4:inst3.I2
+C[1] => mux4:inst2.I2
+C[2] => mux4:inst1.I2
+C[3] => mux4:inst.I2
+D[0] => mux4:inst3.I3
+D[1] => mux4:inst2.I3
+D[2] => mux4:inst1.I3
+D[3] => mux4:inst.I3
+S[0] => mux4:inst.S0
+S[0] => mux4:inst1.S0
+S[0] => mux4:inst2.S0
+S[0] => mux4:inst3.S0
+S[1] => mux4:inst.S1
+S[1] => mux4:inst1.S1
+S[1] => mux4:inst2.S1
+S[1] => mux4:inst3.S1
+
+
+|Eu|muxbus:inst2|mux4:inst
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
+|Eu|muxbus:inst2|mux4:inst1
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
+|Eu|muxbus:inst2|mux4:inst2
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
+|Eu|muxbus:inst2|mux4:inst3
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
+|Eu|register:inst11
+Q[0] <= reg:inst.Q0
+Q[1] <= reg:inst.Q1
+Q[2] <= reg:inst.Q2
+Q[3] <= reg:inst.Q3
+D[0] => reg:inst.D0
+D[1] => reg:inst.D1
+D[2] => reg:inst.D2
+D[3] => reg:inst.D3
+clk => reg:inst.clk
+E => reg:inst.E
+
+
+|Eu|register:inst11|reg:inst
+Q0 <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+D0 => inst5.DATAIN
+clk => inst5.CLK
+clk => inst.CLK
+clk => inst6.CLK
+clk => inst7.CLK
+E => inst5.ENA
+E => inst.ENA
+E => inst6.ENA
+E => inst7.ENA
+Q1 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+D1 => inst.DATAIN
+Q2 <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+D2 => inst6.DATAIN
+Q3 <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+D3 => inst7.DATAIN
+
+
+|Eu|dc:inst
+Y1 <= and2.DB_MAX_OUTPUT_PORT_TYPE
+B => inst1.IN0
+B => and3.IN1
+B => and4.IN1
+A => and2.IN1
+A => inst.IN0
+A => and4.IN0
+Y2 <= and3.DB_MAX_OUTPUT_PORT_TYPE
+Y0 <= and1.DB_MAX_OUTPUT_PORT_TYPE
+Y3 <= and4.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|Eu|register:inst9
+Q[0] <= reg:inst.Q0
+Q[1] <= reg:inst.Q1
+Q[2] <= reg:inst.Q2
+Q[3] <= reg:inst.Q3
+D[0] => reg:inst.D0
+D[1] => reg:inst.D1
+D[2] => reg:inst.D2
+D[3] => reg:inst.D3
+clk => reg:inst.clk
+E => reg:inst.E
+
+
+|Eu|register:inst9|reg:inst
+Q0 <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+D0 => inst5.DATAIN
+clk => inst5.CLK
+clk => inst.CLK
+clk => inst6.CLK
+clk => inst7.CLK
+E => inst5.ENA
+E => inst.ENA
+E => inst6.ENA
+E => inst7.ENA
+Q1 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+D1 => inst.DATAIN
+Q2 <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+D2 => inst6.DATAIN
+Q3 <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+D3 => inst7.DATAIN
+
+
+|Eu|register:inst10
+Q[0] <= reg:inst.Q0
+Q[1] <= reg:inst.Q1
+Q[2] <= reg:inst.Q2
+Q[3] <= reg:inst.Q3
+D[0] => reg:inst.D0
+D[1] => reg:inst.D1
+D[2] => reg:inst.D2
+D[3] => reg:inst.D3
+clk => reg:inst.clk
+E => reg:inst.E
+
+
+|Eu|register:inst10|reg:inst
+Q0 <= inst5.DB_MAX_OUTPUT_PORT_TYPE
+D0 => inst5.DATAIN
+clk => inst5.CLK
+clk => inst.CLK
+clk => inst6.CLK
+clk => inst7.CLK
+E => inst5.ENA
+E => inst.ENA
+E => inst6.ENA
+E => inst7.ENA
+Q1 <= inst.DB_MAX_OUTPUT_PORT_TYPE
+D1 => inst.DATAIN
+Q2 <= inst6.DB_MAX_OUTPUT_PORT_TYPE
+D2 => inst6.DATAIN
+Q3 <= inst7.DB_MAX_OUTPUT_PORT_TYPE
+D3 => inst7.DATAIN
+
+
+|Eu|muxbus:inst3
+Y[0] <= mux4:inst3.Y
+Y[1] <= mux4:inst2.Y
+Y[2] <= mux4:inst1.Y
+Y[3] <= mux4:inst.Y
+A[0] => mux4:inst3.I0
+A[1] => mux4:inst2.I0
+A[2] => mux4:inst1.I0
+A[3] => mux4:inst.I0
+B[0] => mux4:inst3.I1
+B[1] => mux4:inst2.I1
+B[2] => mux4:inst1.I1
+B[3] => mux4:inst.I1
+C[0] => mux4:inst3.I2
+C[1] => mux4:inst2.I2
+C[2] => mux4:inst1.I2
+C[3] => mux4:inst.I2
+D[0] => mux4:inst3.I3
+D[1] => mux4:inst2.I3
+D[2] => mux4:inst1.I3
+D[3] => mux4:inst.I3
+S[0] => mux4:inst.S0
+S[0] => mux4:inst1.S0
+S[0] => mux4:inst2.S0
+S[0] => mux4:inst3.S0
+S[1] => mux4:inst.S1
+S[1] => mux4:inst1.S1
+S[1] => mux4:inst2.S1
+S[1] => mux4:inst3.S1
+
+
+|Eu|muxbus:inst3|mux4:inst
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
+|Eu|muxbus:inst3|mux4:inst1
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
+|Eu|muxbus:inst3|mux4:inst2
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
+|Eu|muxbus:inst3|mux4:inst3
+Y <= inst4.DB_MAX_OUTPUT_PORT_TYPE
+I0 => inst.IN0
+S1 => inst5.IN0
+S1 => inst2.IN1
+S1 => inst3.IN1
+S0 => inst6.IN0
+S0 => inst3.IN2
+S0 => inst1.IN2
+I2 => inst2.IN0
+I3 => inst3.IN0
+I1 => inst1.IN0
+
+
